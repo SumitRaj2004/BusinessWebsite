@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <section class="adminDashboard-section">
+        <div class="container">
+            <div class="admin-top-flex-container">
+                <h1 class="adminDashboard-title">Dashboard</h1>
+                <p class="admin-email">{{adminEmail}}</p>
+            </div>
+            <div class="admin-middle-flex-container">
+                <h2 class="admins-title">Admins</h2>
+                <a href="/admin/add" class="admin-add-btn"><i class="fa-solid fa-plus"></i></a>
+            </div>
+            <div class="admins-flex-container">
+                {{#each admins}}
+                    <div class="admin-flex-container">
+                        <h3>{{this.email}}</h3>
+                        <form action="/admin/dashboard/{{this._id}}?_method=DELETE" method="POST">
+                            <input type="submit" value="Remove" class="admin-btn">
+                        </form>
+                    </div>
+                {{/each}}    
+            </div>
+            <a href="/admin/data" class="getData-btn">Click Here To Get Data</a>
+        </div>
+    </section>
+</body>
+</html>
