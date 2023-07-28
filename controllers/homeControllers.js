@@ -7,18 +7,23 @@ const homeController  = {
     saveContact : async(req, res) => {
         const {name, email, phone, message} = req.body;
         if (name && email && phone && message){
-            const contact = new Contact({
-                name : name,
-                email : email,
-                phone : phone,
-                message : message
-            });
-            await contact.save();
-            res.render("message", {
-                messageTitle : "Thanks",
-                message : "Thanks for connecting with us ;)",
-                link : "/"
-            });
+            try{
+                const contact = new Contact({
+                    name : name,
+                    email : email,
+                    phone : phone,
+                    message : message
+                });
+                await contact.save();
+                res.render("message", {
+                    messageTitle : "Thanks",
+                    message : "Thanks for connecting with us ;)",
+                    link : "/"
+                });
+            }catch(err){
+                res.send("something went wrong figuring out what happened")
+            }
+            
             
         }else{
             res.render("message", {
