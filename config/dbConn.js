@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import { config } from "dotenv";
 config();
-
+mongoose.set('strictQuery', true);
 const connectDb = async(req, res) => {
     try{
         await mongoose.connect(process.env.DATABASE_URL);
